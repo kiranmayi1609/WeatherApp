@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('bg.jpg'); /* Replace with the path to your image */
+            background-size: cover;
+            color: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+           
+            font-family: Arial, sans-serif;
+        }
+        .weather-container {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+        label {
+           width: 100px; /* Set the desired width */
+           height: 30px; /* Set the desired height */
+           line-height: 30px; /* Adjust line height for vertical centering */
+            font-size: 16px; /* Adjust the font size as needed */
+            margin-right: 10px;
+            }
+
+        select, input {
+            font-size: 14px; /* Adjust the font size as needed */
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        input[type="submit"], input[type="button"] {
+          font-size: 14px; /* Adjust the font size as needed */
+          padding: 8px 12px;
+          cursor: pointer;
+            }
+        
+    </style>
+</head>
+<body>
+    <div class="wather-container">
+    {% if weather_info %}
+        <h1>Weather Information for {{ weather_info.city }}</h1>
+        <p>Temperature: {{ weather_info.temperature }}</p>
+        <p>Wind Speed: {{ weather_info.wind_speed }}</p>
+        <p>Humidity: {{ weather_info.humidity }}</p>
+        <p>Rain Chance: {{ weather_info.rain_chance }}</p>
+        <p>Clothing Suggestion: {{ weather_info.clothing_suggestion }}</p>
+        <p>Weather Tip: {{ weather_info.weather_tip }}</p>
+        <p>Additional Tip: {{ weather_info.additional_tip }}</p>
+    {% endif %}
+    <h1>Weather Forecast</h1>
+    
+    <form action="/weather" method="post">
+        <label for="city">Enter City:</label>
+        <select id="city" name="city">
+            {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Get Weather">
+        <input type="button" value="Refresh" onclick="location.reload()">
+    </form>
+    {% if closest_matches %}
+        <p>City not found. Did you mean one of these: {{ closest_matches | join(', ') }}?</p>
+    {% elif not_found %}
+        <p>City not found. Please check the spelling and try again.</p>
+    {% endif %}
+
+    </div>
+</body>
+</html> 
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            text-align: center;
+        
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Weather Forecast</h1>
+        <form action="/weather" method="post">
+            <label for="city">Enter City:</label>
+            <select id="city" name="city">
+                {% for city in cities %}
+                    <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <input type="submit" value="Get Weather">
+        </form>
+        {% if closest_matches %}
+            <p>City not found. Did you mean one of these: {{ closest_matches | join(', ') }}?</p>
+        {% elif not_found %}
+            <p>City not found. Please check the spelling and try again.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+ 
+  -->
+
+  <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Box Example</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('path/to/your/image.jpg'); /* Replace with the path to your image */
+            background-size: cover;
+        }
+
+        .square-box {
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="square-box"></div>
+</body>
+</html>
+
+{% extends 'weather.html' %}
+
+
+{% block head  %}
+ <h1>{{weather_info}}</h1>
+
+ {% endblock  %}
+
+
+{% block body  %}
+
+
+{% endblock  %}

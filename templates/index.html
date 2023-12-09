@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<head>
+    <title>Weather App</title>
+    <style>
+        /* body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('bg.jpg'); 
+            background-size: cover;
+            color: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+           
+            font-family: Arial, sans-serif;
+        }
+        .weather-container {
+            background-color: rgba(0, 0, 0, 0.7); 
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+        label {
+           width: 100px; 
+           height: 30px; 
+           line-height: 30px; 
+            font-size: 16px; 
+            margin-right: 10px;
+            }
+
+        select, input {
+            font-size: 14px; 
+            margin-right: 10px;
+        }
+
+        input[type="submit"], input[type="button"] {
+          font-size: 14px;
+          padding: 8px 12px;
+          cursor: pointer;
+            } */
+        
+            /* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+} */
+
+/* .container {
+    text-align: center;
+    margin-top: 50px;
+} */
+
+/* h1 {
+    margin-bottom: 20px;
+} */
+
+/* .weather-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+} */
+
+/* .search-label {
+    margin-bottom: 10px;
+    
+}
+
+.dark-mode .search-label {
+    color: #fff;
+}
+
+.city-input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.submit-btn, .refresh-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.submit-btn:hover, .refresh-btn:hover {
+    background-color: #0056b3;
+} */
+
+/* General styles */
+
+body {
+            /* background-image: url("{{ url_for('static', filename='AllSeasons.jpg') }}"); */
+            /* Other background styles */
+            /* background-image: url("{{ background_image }}"); */
+            background-image: linear-gradient(to bottom, #4FACFE, #00F0FF);
+            
+        }
+
+
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+    /* margin:0 auto; */
+    font-size: 25px;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+input {
+    font-size:25px ;
+}
+
+.weather-info {
+    margin-top: 20px;
+    border-radius: 5%;
+    margin-top: 20px;
+    /* background-color: black; */
+}
+.additional-info{
+    margin-top: 20px;
+}
+
+.basic-info,
+.additional-info {
+    border: 1px solid #171717;
+    padding: 10px;
+    width: calc(50% - 20px); /* Adjust width and margins as needed */
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    text-align: center;
+
+}
+
+.city-input{
+    margin-bottom: 10px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.info-column {
+    width: calc(25% - 10px);
+    margin-right: 10px;
+    text-align: left;
+}
+
+.info-item {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.info-item .fas {
+    color: blue; /* Change the color to your desired color */
+}
+.weather-icons {
+            font-size: 36px; /* Adjust the icon size as needed */
+            margin-right: 10px; /* Adjust spacing between icons */
+            position: relative;
+            animation: rainEffect 1.75s linear infinite; /* Apply rain effect animation */
+            
+        }
+        .we-icons {
+            font-size: 36px; /* Adjust the icon size as needed */
+            margin-right: 10px; /* Adjust spacing between icons */
+            position: relative;
+            animation: rainEffect 1.75s linear infinite; /* Apply rain effect animation */
+            /* background: linear-gradient(45deg, #ffcc00, #ff6600);  */
+            /* background: linear-gradient(135deg, #b3b3b3, #f2f2f2); */
+            
+            
+        }
+.raindrop {
+            position: absolute;
+            width: 2px; /* Adjust the width of raindrops */
+            height: 10px; /* Adjust the height of raindrops */
+            background: blue; /* Change the color of raindrops */
+            animation: fall 3s linear infinite; /* Set the raindrop animation */
+        }
+
+    /* Marquee styles */
+    .scrolling-icons {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .scrolling-icons i {
+        display: inline-block;
+    }
+
+    @keyframes scroll {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
+
+    .marquee {
+        animation: scroll 20s linear infinite;
+    }
+
+    /* Keyframes for raindrop animation */
+    @keyframes fall {
+            0% {
+                transform: translateY(-50px); /* Initial position above the container */
+                opacity: 0; /* Initially invisible */
+            }
+            100% {
+                transform: translateY(100vh); /* Fall to the bottom of the container */
+                opacity: 1; /* Fully visible at the bottom */
+            }
+        }
+
+        /* Rain effect animation */
+        @keyframes rainEffect {
+            0% {
+                transform: translate(0, 0); /* Initial position */
+            }
+            100% {
+                transform: translate(0, 5px); /* Move down slightly */
+            }
+        }
+
+
+
+/* Media query for responsiveness - adjust as necessary */
+@media (max-width: 768px) {
+    .basic-info,
+    .additional-info
+    .info-item {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <p>
+            <!-- Weather icons with rain effect -->
+            <i class="fas fa-sun weather-icons"></i> <!-- Sun icon -->
+            <i class="fas fa-cloud weather-icons"></i> <!-- Cloud icon -->
+            <i class="fas fa-umbrella weather-icons"></i> <!-- Umbrella icon -->
+            <i class="fas fa-bolt weather-icons"></i> <!-- Thunderbolt icon -->
+            <!-- Add more icons for different weather conditions -->
+        </p>
+        <div class="rain">
+            <!-- Add multiple elements with the raindrop class for the rain effect -->
+            <div class="raindrop"></div>
+            <div class="raindrop"></div>
+        <form action="/weather" method="post" class="weather-form">
+            <label for="city" class="search-label">Enter City:</label>
+            <input type="text" id="city" name="city" class="city-input" placeholder="Enter city">
+            <input type="submit" value="Get Weather" class="submit-btn">
+            <!-- <input type="button" value="Refresh" onclick="location.reload()" class="refresh-btn"> -->
+            
+        </form>
+        {% if closest_matches %}
+                <p>City not found. Did you mean one of these: {{ closest_matches | join(', ') }}?</p>
+         {% elif not_found %}
+              <p>City not found. Please check the spelling and try again.</p>
+         {% endif %}
+
+        <div class="weather-info">
+            {% if weather_info %}
+                <div class="basic-info">
+                    <h2> {{ weather_info.city }}</h2>
+                    <div class="info-row">
+                        <div class="info-column">
+                            <p class="info-item">
+                                <i class="fas fa-thermometer-half"></i> Temperature
+                            </p>
+                            <p class="info-value">{{ weather_info.temperature }}</p>
+                        </div>
+                        <div class="info-column">
+                            <p class="info-item">
+                                <i class="fas fa-tint"></i> Humidity
+                            </p>
+                            <p class="info-value">{{ weather_info.humidity }}</p>
+                        </div>
+                        <div class="info-column">
+                            <p class="info-item">
+                                <i class="fas fa-wind"></i> Wind Speed
+                            </p>
+                            <p class="info-value">{{ weather_info.wind_speed }}</p>
+                        </div>
+                        <div class="info-column">
+                            <p class="info-item">
+                                <i class="fas fa-cloud-rain"></i> Rain Chance
+                            </p>
+                            <p class="info-value">{{ weather_info.rain_chance }}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="additional-info">
+                    <h2>Additional Information</h2>
+                    <p>Clothing Suggestion: {{ weather_info.clothing_suggestion }}</p>
+                    <p>Weather Tip: {{ weather_info.weather_tip }}</p>
+                    <p>Additional Tip: {{ weather_info.additional_tip }}</p>
+                </div>
+            {% endif %}
+        </div>
+        <div class="scrolling-icons">
+            <div class="marquee">
+                <i class="fas fa-sun we-icons"></i> <!-- Sun icon -->
+                <i class="fas fa-cloud we-icons"></i> <!-- Cloud icon -->
+                <i class="fas fa-umbrella we-icons"></i> <!-- Umbrella icon -->
+                <i class="fas fa-bolt we-icons"></i> <!-- Thunderbolt icon -->
+                <i class="fas fa-coat-cold we-icons"></i>
+                <i class="fas fa-scarf we-icons"></i>
+                <i class="fas fa-mitten we-icons"></i>
+                <!-- Add more icons for different weather conditions -->
+            </div>
+    </div>
+    
+
+</body>
+</html> 
+
