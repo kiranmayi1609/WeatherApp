@@ -33,17 +33,17 @@ def index():
     # description=weather_data["weather"][0]["description"] if weather_data else "Sunny"
     # background_image =get_background_image(description)
     # background_image=
-    city = "London"  # Replace this with the city name you want to fetch weather for
-    weather_data = fetch_weather_data(city)
+    # city = "London"  # Replace this with the city name you want to fetch weather for
+    # weather_data = fetch_weather_data(city)
 
     # Assuming the weather description and temperature are available in the fetched data
-    description = weather_data["weather"][0]["description"] if weather_data else "Sunny"
-    temperature_kelvin = weather_data["main"]["temp"] if weather_data else 293.15  # Replace with default temperature
-    temperature_celsius = temperature_kelvin - 273.15
+    # description = weather_data["weather"][0]["description"] if weather_data else "Sunny"
+    # temperature_kelvin = weather_data["main"]["temp"] if weather_data else 293.15  # Replace with default temperature
+    # temperature_celsius = temperature_kelvin - 273.15
 
     # Get the appropriate background image based on the weather description and temperature
-    background_image = get_background_image(description, temperature_celsius)
-    return render_template('index.html', cities=available_cities,weather_info="Hello world",background_image=background_image)
+    # background_image = get_background_image(description, temperature_celsius)
+    return render_template('index.html', cities=available_cities,weather_info="Hello world")
 
 @app.route('/weather', methods=['POST'])
 def weather():
@@ -75,6 +75,14 @@ def weather():
             return render_template('index.html', cities=available_cities, closest_matches=closest_matches)
         else:
             return render_template('index.html', cities=available_cities, not_found=True)
+def explain_weather_terms():
+
+        learn_more = input("\nDo you want to learn more about weather? (yes/no): ")
+        if learn_more.lower() == "yes" or "y":
+            print("\nHere are some resources to learn more😊")
+            print("- Weather Glossary: https://www.weather.gov/glossary")
+            print("- Kids Weather Experiments: https://scied.ucar.edu/learning-zone/how-weather-works/weather-experiments" ) 
+
 
 if __name__ == '__main__':
     app.run(debug=True)

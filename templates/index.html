@@ -5,6 +5,7 @@
 <head>
     <title>Weather App</title>
     <style>
+
        
         form {
             margin-top: 20px;
@@ -13,7 +14,7 @@
            width: 100px; 
            height: 30px; 
            line-height: 30px; 
-            font-size: 16px; 
+            font-size: 25px; 
             margin-right: 10px;
             }
 
@@ -23,20 +24,25 @@
         }
 
         input[type="submit"], input[type="button"] {
-          font-size: 14px;
+          font-size: 20px;
           padding: 8px 12px;
           cursor: pointer;
-            } */
+            } 
         
-/* General styles */
 
-body {
-            /* background-image: url("{{ url_for('static', filename='AllSeasons.jpg') }}"); */
-           
-            /* background-image: url("{{ background_image }}"); */
-            background-image: linear-gradient(to bottom, #4FACFE, #00F0FF);
+ 
+body { 
+            /* Use your desired background image */
+            background-image: url('static/finallll.jpg');
+            /* Optionally set the background size and other properties */
+             background-size: cover;
+            background-repeat: no-repeat; 
             
-        }
+        
+} 
+/* h1{
+    color: blue;
+} */
 
 
 
@@ -46,6 +52,7 @@ body {
     /* margin:0 auto; */
     font-size: 25px;
     padding: 20px;
+    /* background-image: url('static/bg1.jpg'); */
 }
 
 h1 {
@@ -63,11 +70,17 @@ input {
 }
 .additional-info{
     margin-top: 20px;
+    padding: 10px;
+    width: calc(50% - 20px);
+    margin-bottom: 20px;
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    text-align: center;
 }
 
-.basic-info,
-.additional-info {
-    border: 1px solid #171717;
+.basic-info
+ {
+    border: 5px solid #171717;
     padding: 10px;
     width: calc(50% - 20px); /* Adjust width and margins as needed */
     box-sizing: border-box;
@@ -112,9 +125,10 @@ input {
             margin-right: 10px; /* Adjust spacing between icons */
             position: relative;
             animation: rainEffect 1.75s linear infinite; /* Apply rain effect animation */
+            /* color: blue; */
             
         }
-        .we-icons {
+ .we-icons {
             font-size: 36px; /* Adjust the icon size as needed */
             margin-right: 10px; /* Adjust spacing between icons */
             position: relative;
@@ -193,7 +207,7 @@ input {
 
     </style>
 </head>
-<body>
+<body >
 
     <div class="container">
         <h1>Weather Forecast</h1>
@@ -210,9 +224,9 @@ input {
             <div class="raindrop"></div>
             <div class="raindrop"></div>
         <form action="/weather" method="post" class="weather-form">
-            <label for="city" class="search-label">Enter City:</label>
-            <input type="text" id="city" name="city" class="city-input" placeholder="Enter city">
-            <input type="submit" value="Get Weather" class="submit-btn">
+            <label for="city" class="search-label">Enter City</label>
+            <input type="text" id="city" name="city" class="city-input" placeholder="Type here ">
+            <input type="submit" value="Show me" class="submit-btn">
             <!-- <input type="button" value="Refresh" onclick="location.reload()" class="refresh-btn"> -->
             
         </form>
@@ -229,25 +243,29 @@ input {
                     <div class="info-row">
                         <div class="info-column">
                             <p class="info-item">
-                                <i class="fas fa-thermometer-half"></i> Temperature
+                                <i class="fas fa-thermometer-half"></i> 
+                                <a href="#" onclick="showTempratureInfo('the temperature is high,it is hot .Temprature is low its cool ')">Temperature</a>
                             </p>
                             <p class="info-value">{{ weather_info.temperature }}</p>
                         </div>
                         <div class="info-column">
                             <p class="info-item">
-                                <i class="fas fa-tint"></i> Humidity
+                                <i class="fas fa-tint"></i>
+                                <a href="#" onclick="showHumidityInfo('Humidity is the amount of water vapor in the air')"> Humidity</a>
                             </p>
-                            <p class="info-value">{{ weather_info.humidity }}</p>
+                            <p class="info-value"> {{ weather_info.humidity }}</p>
                         </div>
                         <div class="info-column">
                             <p class="info-item">
-                                <i class="fas fa-wind"></i> Wind Speed
+                                <i class="fas fa-wind"></i>
+                                <a href="#" onclick="showWindSpeedInfo('Wind speed is how fast the air is moving. ')"> Wind Speed</a>
                             </p>
                             <p class="info-value">{{ weather_info.wind_speed }}</p>
                         </div>
                         <div class="info-column">
                             <p class="info-item">
-                                <i class="fas fa-cloud-rain"></i> Rain Chance
+                                <i class="fas fa-cloud-rain"></i> 
+                                <a href="#" onclick="showRainInfo('Humidity is the amount of water vapor in the air')">Rain Chance</a>
                             </p>
                             <p class="info-value">{{ weather_info.rain_chance }}</p>
                         </div>
@@ -262,6 +280,7 @@ input {
                 </div>
             {% endif %}
         </div>
+
         <div class="scrolling-icons">
             <div class="marquee">
                 <i class="fas fa-sun we-icons"></i> <!-- Sun icon -->
@@ -273,8 +292,54 @@ input {
                 <i class="fas fa-mitten we-icons"></i>
                 <!-- Add more icons for different weather conditions -->
             </div>
-    </div>
+
+            <div class="external-links">
+                <p>Do you want to learn more about weather? <a href="#" onclick="showExternalLinks()">Click here!</a></p>
+                <div id="external-links" style="display: none;">
+                    <p>Here are some resources to learn more 😊</p>
+                    <ul>
+                        <li><a href="https://www.weather.gov/glossary" target="_blank">Weather Glossary</a></li>
+                        <li><a href="https://scied.ucar.edu/learning-zone/how-weather-works/weather-experiments" target="_blank">Kids Weather Experiments</a></li>
+                        <li><a href="https://www.firstcry.com/intelli/articles/learn-about-weather/" target="_blank">Teach kids </a></li>
+                        <!-- Add more links as needed -->
+                    </ul>
+                </div>
+            </div>
     
+    
+    </div>
+    <script>
+        function showExternalLinks() {
+            var externalLinksDiv = document.getElementById('external-links');
+            if (externalLinksDiv.style.display === 'none') {
+                externalLinksDiv.style.display = 'block';
+            } else {
+                externalLinksDiv.style.display = 'none';
+            }
+        }
+
+        function showHumidityInfo(message) {
+         alert(message)
+    }
+
+    function showWindSpeedInfo(message) {
+        // You can customize the message or fetch it dynamically from your backend
+      
+        alert(message);
+    }
+
+    function showTempratureInfo(message) {
+        // You can customize the message or fetch it dynamically from your backend
+      
+        alert(message);
+    }
+
+    function showRainInfo(message) {
+        // You can customize the message or fetch it dynamically from your backend
+      
+        alert(message);
+    }
+    </script>
 
 </body>
 </html> 
